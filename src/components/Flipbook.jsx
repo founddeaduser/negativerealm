@@ -195,15 +195,13 @@ export default function Flipbook() {
               maxShadowOpacity={0.45}
               flippingTime={700}
               mobileScrollSupport={true}
-              className="fb-book"
-              style={{}}
-              onFlip={(e) => { currentRef.current = e.data; setCurrent(e.data) }}
-            >
-              {pages.map((src, i) => (
-                <Page key={i} src={src} number={i + 1} />
-              ))}
-            </HTMLFlipBook>
-          )}
+              className={`fb-book ${
+  size.w >= 720 && current === 0
+    ? 'fb-book--front-cover'
+    : size.w >= 720 && current === total - 1
+      ? 'fb-book--back-cover'
+      : ''
+}`}
         </div>
 
         <div className="fb-toolbar">
