@@ -227,7 +227,6 @@ export default function Flipbook() {
           </span>
           <button type="button" onClick={() => flip(1)} disabled={!total || current >= total - 1} aria-label="Next page">Next</button>
           <span className="fb-spacer" />
-          <a className="fb-link" href={PDF_URL} target="_blank" rel="noreferrer">Original PDF</a>
           <button type="button" onClick={toggleFullscreen}>{isFull ? 'Exit fullscreen' : 'Fullscreen'}</button>
         </div>
       </div>
