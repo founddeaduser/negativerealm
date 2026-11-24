@@ -97,11 +97,11 @@ code { font-family: ui-monospace, Menlo, monospace; font-size: 0.8em; }
 }
 
 /* Center front and back covers */
-.fb-stage--front-cover .fb-book .stf__parent {
+.fb-stage--front-cover .fb-book {
   transform: translateX(-25%);
 }
 
-.fb-stage--back-cover .fb-book .stf__parent {
+.fb-stage--back-cover .fb-book {
   transform: translateX(25%);
 }
 
