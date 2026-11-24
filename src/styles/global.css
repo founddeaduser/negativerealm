@@ -89,13 +89,7 @@ code { font-family: ui-monospace, Menlo, monospace; font-size: 0.8em; }
   margin-left: auto;
   margin-right: auto;
 }
-.fb-book--front-cover {
-  transform: translateX(-25%);
-}
 
-.fb-book--back-cover {
-  transform: translateX(25%);
-}
 .fb-page { background: #000; overflow: hidden; }
 .fb-page img { display: block; width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
 .fb-message { text-align: center; color: var(--dim); max-width: 28rem; padding: 0 1rem; }
