@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useRef, useState } from 'react'
 import HTMLFlipBook from 'react-pageflip'
 import * as pdfjsLib from 'pdfjs-dist'
-import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
+import workerUrl from '../pdf.worker.js?worker&url'
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl
 
