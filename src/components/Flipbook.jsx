@@ -183,7 +183,7 @@ export default function Flipbook() {
       
 <div
   ref={stageRef}
-  className={`fb-stage${current === 0 ? ' fb-stage--front-cover' : current === total - 1 && total > 0 ? ' fb-stage--back-cover' : ''}`}
+  className={`fb-stage${current === 0 ? ' fb-stage--front-cover' : current >= total - 2 && total > 0 ? ' fb-stage--back-cover' : ''}`}
 >
 
   {status === 'error' && (
