@@ -191,7 +191,7 @@ export default function Flipbook() {
               size="fixed"
               startPage={currentRef.current}
               showCover={true}
-              usePortrait={true}
+              usePortrait={size.w < 720}
               maxShadowOpacity={0.45}
               flippingTime={700}
               mobileScrollSupport={true}
