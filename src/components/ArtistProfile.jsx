@@ -1,6 +1,6 @@
+
 import { useState } from 'react'
 
-// EDIT THIS: replace the text with your own biography.
 const profile = {
   name: 'Negative Realm',
   role: 'Poet and collector of anatomical graphics',
@@ -10,22 +10,29 @@ const profile = {
   ],
 }
 
-const PHOTO = `${import.meta.env.BASE_URL}assets/profile.jpg`
+const PHOTO = `${import.meta.env.BASE_URL}assets/negativerealm.png`
 
 export default function ArtistProfile() {
   const [failed, setFailed] = useState(false)
+
   return (
-    <section id="artist" className="section artist">
+    <section id="about" className="section artist">
       <div className="artist-grid">
         <figure className="artist-photo">
           {failed ? (
             <div className="artist-photo-missing">
-              Add your photo at<br /><code>public/assets/profile.jpg</code>
+              Add your photo at<br />
+              <code>public/assets/negativerealm.png</code>
             </div>
           ) : (
-            <img src={PHOTO} alt={`Portrait of ${profile.name}`} onError={() => setFailed(true)} />
+            <img
+              src={PHOTO}
+              alt={`Portrait of ${profile.name}`}
+              onError={() => setFailed(true)}
+            />
           )}
         </figure>
+
         <div className="artist-copy">
           <h3>{profile.name}</h3>
           <p className="artist-role">{profile.role}</p>
