@@ -174,7 +174,14 @@ export default function Flipbook() {
         onKeyDown={onKeyDown}
         aria-label="Zine flipbook"
       >
-        <div ref={stageRef} className="fb-stage">
+        <div
+  ref={stageRef}
+  className={`fb-stage ${
+    size.w >= 720 && (current === 0 || current === total - 1)
+      ? 'fb-stage--cover'
+      : ''
+  }`}
+>
           {status === 'loading' && <p className="fb-message">Loading the zine…</p>}
           {status === 'error' && (
             <p className="fb-message">
