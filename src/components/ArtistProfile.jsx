@@ -6,7 +6,7 @@ const profile = {
   role: 'Poet and collector of anatomical graphics',
   bio: [
     'Negative Realm writes the poems and gathers the anatomical engravings that make up “At Least Until My Body Give Up On Me”.',
-    'Add your own biography here: where you work from, what you make, how to get in touch.',
+    'Negative Realm is a dark illustrator born and raised in Bandung. Over time, a bleak visual direction took shape around quiet solitude, eventually forming the moniker Negative Realm',
   ],
 }
 
@@ -16,7 +16,6 @@ export default function ArtistProfile() {
   const [failed, setFailed] = useState(false)
   return (
     <section id="artist" className="section artist">
-      <h2 className="section-title">The artist</h2>
       <div className="artist-grid">
         <figure className="artist-photo">
           {failed ? (
