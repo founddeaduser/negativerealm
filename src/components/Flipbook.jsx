@@ -181,10 +181,10 @@ export default function Flipbook() {
         aria-label="Zine flipbook"
       >
       
-<div ref={stageRef} className="fb-stage">
-  {status === 'loading' && (
-    <p className="fb-message">Loading the zine…</p>
-  )}
+<div
+  ref={stageRef}
+  className={`fb-stage${current === 0 ? ' fb-stage--front-cover' : current === total - 1 && total > 0 ? ' fb-stage--back-cover' : ''}`}
+>
 
   {status === 'error' && (
     <p className="fb-message">
