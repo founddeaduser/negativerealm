@@ -184,24 +184,30 @@ export default function Flipbook() {
           )}
           {ready && (
             <HTMLFlipBook
-              ref={bookRef}
-              key={`${pageW}x${pageH}`}
-              width={pageW}
-              height={pageH}
-              size="fixed"
-              startPage={currentRef.current}
-              showCover={true}
-              usePortrait={size.w < 720}
-              maxShadowOpacity={0.45}
-              flippingTime={700}
-              mobileScrollSupport={true}
-              className={`fb-book ${
-  size.w >= 720 && current === 0
-    ? 'fb-book--front-cover'
-    : size.w >= 720 && current === total - 1
-      ? 'fb-book--back-cover'
-      : ''
-}`}
+  ref={bookRef}
+  key={`${pageW}x${pageH}`}
+  width={pageW}
+  height={pageH}
+  size="fixed"
+  startPage={currentRef.current}
+  showCover={true}
+  usePortrait={size.w < 720}
+  maxShadowOpacity={0.45}
+  flippingTime={700}
+  mobileScrollSupport={true}
+  className={`fb-book ${
+    size.w >= 720 && current === 0
+      ? 'fb-book--front-cover'
+      : size.w >= 720 && current === total - 1
+        ? 'fb-book--back-cover'
+        : ''
+  }`}
+  style={{}}
+  onFlip={(e) => {
+    currentRef.current = e.data
+    setCurrent(e.data)
+  }}
+>
         </div>
 
         <div className="fb-toolbar">
