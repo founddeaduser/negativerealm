@@ -28,6 +28,7 @@ export default function Flipbook() {
   const [total, setTotal] = useState(0)
   const [ratio, setRatio] = useState(1.414)
   const [status, setStatus] = useState('loading') // loading | ready | error
+  const [errorMessage, setErrorMessage] = useState('')
   const [rendered, setRendered] = useState(0)
   const [size, setSize] = useState({ w: 0, h: 0 })
   const [current, setCurrent] = useState(0)
@@ -76,11 +77,12 @@ export default function Flipbook() {
           page.cleanup()
         }
       } catch (err) {
-        if (!cancelled) {
-          console.error('Could not load the zine PDF:', err)
-          setStatus('error')
-        }
-      }
+  console.error('Could not load the zine PDF:', err)
+  if (!cancelled) {
+    setErrorMessage(err?.message || String(err))
+    setStatus('error')
+  }
+}
     })()
 
     return () => {
@@ -187,13 +189,14 @@ export default function Flipbook() {
 >
 
   {status === 'error' && (
-    <p className="fb-message">
-      The zine could not be loaded. Make sure the file{' '}
-      <code>public/assets/zine.pdf</code> exists,
-      or <a href={PDF_URL}>open the PDF directly</a>.
-    </p>
-  )}
-
+  <p className="fb-message">
+    The zine could not be loaded.
+    <br />
+    <code>{errorMessage}</code>
+    <br />
+    <a href={PDF_URL}>Open the PDF directly</a>
+  </p>
+)}
   {ready && (
     <HTMLFlipBook
       ref={bookRef}
