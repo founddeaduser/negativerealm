@@ -1,7 +1,8 @@
+
 const links = [
   { href: '#introduction', label: 'Introduction' },
   { href: '#zine', label: 'Read the zine' },
-  { href: '#artist', label: 'About' },
+  { href: '#about', label: 'About' },
 ]
 
 export default function Navbar() {
