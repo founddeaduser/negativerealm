@@ -142,17 +142,22 @@ export default function Flipbook() {
     else if (e.key === 'Escape' && pseudoFs) setPseudoFs(false)
   }
 
-  // Page dimensions: two pages side by side on wide screens, one page on narrow ones
+  // Page dimensions
   const twoUp = size.w >= 720
+  let pageW = twoUp ? Math.floor(size.w / 2) : size.w
+  let pageH = Math.floor(pageW * ratio)
 
-// Cover depan dan belakang menggunakan mode satu halaman.
-// Halaman isi menggunakan mode dua halaman pada desktop.
-const portraitMode =
-  !twoUp || current === 0 || current === total - 1
+  if (pageH > size.h) {
+    pageH = size.h
+    pageW = Math.floor(pageH / ratio)
+  }
 
-let pageW = twoUp ? Math.floor(size.w / 2) : size.w
   const spread = pageW * 2 <= size.w
-  const ready = status === 'ready' && size.w > 0 && size.h > 0 && pageW > 50
+  const ready =
+    status === 'ready' &&
+    size.w > 0 &&
+    size.h > 0 &&
+    pageW > 50
 
   let label = ''
   if (total) {
@@ -175,45 +180,45 @@ let pageW = twoUp ? Math.floor(size.w / 2) : size.w
         onKeyDown={onKeyDown}
         aria-label="Zine flipbook"
       >
-       <div ref={stageRef} className="fb-stage">
->
-          {status === 'loading' && <p className="fb-message">Loading the zine…</p>}
-          {status === 'error' && (
-            <p className="fb-message">
-              The zine could not be loaded. Make sure the file <code>public/assets/zine.pdf</code> exists,
-              or <a href={PDF_URL}>open the PDF directly</a>.
-            </p>
-          )}
-          {ready && (
+      
+<div ref={stageRef} className="fb-stage">
+  {status === 'loading' && (
+    <p className="fb-message">Loading the zine…</p>
+  )}
 
-{ready && (
-  <HTMLFlipBook
-    ref={bookRef}
-    key={`${pageW}x${pageH}-${portraitMode ? 'portrait' : 'landscape'}`}
-    width={pageW}
-    height={pageH}
-    size="fixed"
-    startPage={currentRef.current}
-    showCover={true}
-    usePortrait={portraitMode}
-    maxShadowOpacity={0.45}
-    flippingTime={700}
-    mobileScrollSupport={true}
-    className="fb-book"
-    style={{}}
-    onFlip={(e) => {
-      currentRef.current = e.data
-      setCurrent(e.data)
-    }}
-  >
-    {pages.map((src, i) => (
-      <Page key={i} src={src} number={i + 1} />
-    ))}
-  </HTMLFlipBook>
-)}
+  {status === 'error' && (
+    <p className="fb-message">
+      The zine could not be loaded. Make sure the file{' '}
+      <code>public/assets/zine.pdf</code> exists,
+      or <a href={PDF_URL}>open the PDF directly</a>.
+    </p>
+  )}
 
-        </div>
-
+  {ready && (
+    <HTMLFlipBook
+      ref={bookRef}
+      width={pageW}
+      height={pageH}
+      size="fixed"
+      startPage={currentRef.current}
+      showCover={true}
+      usePortrait={true}
+      maxShadowOpacity={0.45}
+      flippingTime={700}
+      mobileScrollSupport={true}
+      className="fb-book"
+      style={{}}
+      onFlip={(e) => {
+        currentRef.current = e.data
+        setCurrent(e.data)
+      }}
+    >
+      {pages.map((src, i) => (
+        <Page key={i} src={src} number={i + 1} />
+      ))}
+    </HTMLFlipBook>
+  )}
+</div>
         <div className="fb-toolbar">
           <button type="button" onClick={() => flip(-1)} disabled={current <= 0} aria-label="Previous page">Previous</button>
           <span className="fb-count" aria-live="polite">
