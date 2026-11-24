@@ -134,3 +134,9 @@ code { font-family: ui-monospace, Menlo, monospace; font-size: 0.8em; }
   html { scroll-behavior: auto; }
   .hero-title span, .hero-sub, .btn { animation: none; opacity: 1; filter: none; }
 }
+/* Center the single front and back covers */
+.fb-stage--cover .fb-book {
+  position: relative !important;
+  left: 50% !important;
+  transform: translateX(-25%) !important;
+}
