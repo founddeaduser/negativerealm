@@ -185,9 +185,11 @@ let pageW = twoUp ? Math.floor(size.w / 2) : size.w
             </p>
           )}
           {ready && (
+
+{ready && (
   <HTMLFlipBook
     ref={bookRef}
-   key={`${pageW}x${pageH}-${portraitMode ? 'portrait' : 'landscape'}`}
+    key={`${pageW}x${pageH}-${portraitMode ? 'portrait' : 'landscape'}`}
     width={pageW}
     height={pageH}
     size="fixed"
@@ -198,12 +200,6 @@ let pageW = twoUp ? Math.floor(size.w / 2) : size.w
     flippingTime={700}
     mobileScrollSupport={true}
     className="fb-book"
-      size.w >= 720 && current === 0
-        ? 'fb-book--front-cover'
-        : size.w >= 720 && current === total - 1
-          ? 'fb-book--back-cover'
-          : ''
-    }`}
     style={{}}
     onFlip={(e) => {
       currentRef.current = e.data
@@ -215,6 +211,7 @@ let pageW = twoUp ? Math.floor(size.w / 2) : size.w
     ))}
   </HTMLFlipBook>
 )}
+
         </div>
 
         <div className="fb-toolbar">
