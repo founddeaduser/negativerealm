@@ -82,7 +82,18 @@ code { font-family: ui-monospace, Menlo, monospace; font-size: 0.8em; }
 .fb-shell:fullscreen { height: 100vh; border: 0; }
 .fb-shell.is-pseudo-fs { position: fixed; inset: 0; z-index: 100; height: 100dvh; border: 0; }
 .fb-stage { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 1rem 0; position: relative; }
-.fb-book { margin: 0 auto; }
+.fb-book {
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.fb-book--front-cover {
+  transform: translateX(-25%);
+}
+
+.fb-book--back-cover {
+  transform: translateX(25%);
+}
 .fb-page { background: #000; overflow: hidden; }
 .fb-page img { display: block; width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
 .fb-message { text-align: center; color: var(--dim); max-width: 28rem; padding: 0 1rem; }
