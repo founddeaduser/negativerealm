@@ -270,7 +270,10 @@ export default function Flipbook() {
         onKeyDown={handleKeyDown}
         aria-label="Zine flipbook"
       >
-        <div ref={stageRef} className="fb-stage">
+        <div
+  ref={stageRef}
+  className={`fb-stage${current === 0 ? ' fb-stage--front-cover' : ''}`}
+>
           {status === 'error' && (
             <p className="fb-message">
               The zine could not be loaded.
