@@ -144,12 +144,13 @@ export default function Flipbook() {
 
   // Page dimensions: two pages side by side on wide screens, one page on narrow ones
   const twoUp = size.w >= 720
-  let pageW = twoUp ? Math.floor(size.w / 2) : size.w
-  let pageH = Math.floor(pageW * ratio)
-  if (pageH > size.h) {
-    pageH = size.h
-    pageW = Math.floor(pageH / ratio)
-  }
+
+// Cover depan dan belakang menggunakan mode satu halaman.
+// Halaman isi menggunakan mode dua halaman pada desktop.
+const portraitMode =
+  !twoUp || current === 0 || current === total - 1
+
+let pageW = twoUp ? Math.floor(size.w / 2) : size.w
   const spread = pageW * 2 <= size.w
   const ready = status === 'ready' && size.w > 0 && size.h > 0 && pageW > 50
 
@@ -174,13 +175,7 @@ export default function Flipbook() {
         onKeyDown={onKeyDown}
         aria-label="Zine flipbook"
       >
-        <div
-  ref={stageRef}
-  className={`fb-stage ${
-    size.w >= 720 && (current === 0 || current === total - 1)
-      ? 'fb-stage--cover'
-      : ''
-  }`}
+       <div ref={stageRef} className="fb-stage">
 >
           {status === 'loading' && <p className="fb-message">Loading the zine…</p>}
           {status === 'error' && (
@@ -192,17 +187,17 @@ export default function Flipbook() {
           {ready && (
   <HTMLFlipBook
     ref={bookRef}
-    key={`${pageW}x${pageH}`}
+   key={`${pageW}x${pageH}-${portraitMode ? 'portrait' : 'landscape'}`}
     width={pageW}
     height={pageH}
     size="fixed"
     startPage={currentRef.current}
     showCover={true}
-    usePortrait={size.w < 720}
+    usePortrait={portraitMode}
     maxShadowOpacity={0.45}
     flippingTime={700}
     mobileScrollSupport={true}
-    className={`fb-book ${
+    className="fb-book"
       size.w >= 720 && current === 0
         ? 'fb-book--front-cover'
         : size.w >= 720 && current === total - 1
