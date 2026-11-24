@@ -85,7 +85,10 @@ code { font-family: ui-monospace, Menlo, monospace; font-size: 0.8em; }
 .fb-book {
   margin: 0 auto;
 }
-
+.fb-stage--cover .fb-book {
+  margin-left: auto;
+  margin-right: auto;
+}
 .fb-book--front-cover {
   transform: translateX(-25%);
 }
